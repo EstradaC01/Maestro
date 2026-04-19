@@ -23,10 +23,10 @@ const Renderer = (() => {
         ctx.clearRect(0, 0, videoWidth, videoHeight);
     }
 
-    function drawLandmarks(landmarks, isPinching) {
+    function drawLandmarks(landmarks, isclenching) {
         if (!ctx || !landmarks) return;
 
-        const color = isPinching ? LANDMARK_COLOR_PINCH : LANDMARK_COLOR_OPEN;
+        const color = isclenching ? LANDMARK_COLOR_PINCH : LANDMARK_COLOR_OPEN;
 
         // Draw connections
         drawConnections(landmarks);
@@ -143,7 +143,7 @@ const Renderer = (() => {
         ctx.shadowBlur = 0;
     }
 
-    function render(landmarks, volume, isPinching, rampDirection, rampStrength) {
+    function render(landmarks, volume, isclenching, rampDirection, rampStrength) {
         if (!landmarks) {
             clear();
             updateLevelBar(volume);
@@ -152,7 +152,7 @@ const Renderer = (() => {
         }
 
         clear();
-        drawLandmarks(landmarks, isPinching);
+        drawLandmarks(landmarks, isclenching);
         if (rampDirection !== 0) {
             drawFlickArrow(rampDirection, rampStrength || 1);
         }

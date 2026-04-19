@@ -25,6 +25,9 @@ const App = (() => {
         elements.flickValue    = document.getElementById('flick-value');
         elements.rampValue     = document.getElementById('ramp-value');
         elements.sensitivityReset = document.getElementById('sensitivity-reset');
+        elements.logo          = document.getElementById('logo');
+        elements.logoContainer = document.getElementById('logo-container');
+        elements.videoContainer = document.getElementById('video-container');
     }
 
     function setupEventListeners() {
@@ -107,7 +110,7 @@ const App = (() => {
         if (!badge || !text) return;
         badge.className = state;
         if (state === 'detecting')      text.textContent = 'Hand detected';
-        else if (state === 'pinching')  text.textContent = 'Pinching!';
+        else if (state === 'clenching')  text.textContent = 'Clenching!';
         else                            text.textContent = 'No hand detected';
     }
 
@@ -123,7 +126,7 @@ const App = (() => {
         const { volume, pinch } = Gestures.processHand(landmarks);
         const { direction, strength } = Gestures.getRampState();
 
-        setStatusBadge(pinch ? 'pinching' : 'detecting');
+        setStatusBadge(pinch ? 'clenching' : 'detecting');
 
         Renderer.render(landmarks, volume, pinch, direction, strength);
     }
@@ -132,6 +135,14 @@ const App = (() => {
         getElements();
         setupEventListeners();
         YouTubePlayer.init();
+        updateLogoSize();
+        window.addEventListener('resize', updateLogoSize);
+    }
+
+    function updateLogoSize() {
+        if (!elements.logo || !elements.videoContainer) return;
+        const videoHeight = elements.videoContainer.offsetHeight;
+        elements.logo.style.height = (videoHeight * 0.12) + 'px';
     }
 
     return { init };

@@ -41,6 +41,8 @@ body {
     justify-content: center;
     gap: 20px;
     padding: 20px;
+    transform: scale(1.75);
+    transform-origin:  top left;
 }
 
 /* ── Video Player ── */
@@ -58,9 +60,23 @@ body {
 #side-panel {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
     width: 280px;
     flex-shrink: 0;
+}
+
+#logo-container {
+    display: flex;
+    justify-content: center;
+    height: 70px;
+    flex-shrink: 0;
+}
+
+#logo {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+    opacity: 0.85;
 }
 
 /* ── Webcam ── */
@@ -123,7 +139,7 @@ body {
     box-shadow: 0 0 12px rgba(99,102,241,0.5);
 }
 
-#status-badge.pinching {
+#status-badge.clenching {
     background: rgba(245, 158, 11, 0.9);
     color: #fff;
     box-shadow: 0 0 12px rgba(245,158,11,0.5);
